@@ -29,12 +29,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     /*Listening to the newly created observable (customObservable) 
-    This method will be executed everytime observer.next is called*/
+    This method will be executed everytime observer.next is called
+    
+    Two ways of lintengin the observable
+    first*/
     this.subsCustomObservable = customObservable.subscribe((data) => {
       console.log('new observable=' + data);
     });
 
-
+    /*second*/
+    this.subsCustomObservable = customObservable.subscribe({
+      next: (data) => {
+        console.log('new observable=' + data);
+      },
+      error: (erro) => {
+        console.log('erro=' + erro);
+      }
+    })
   }
 
   ngOnDestroy(): void {
